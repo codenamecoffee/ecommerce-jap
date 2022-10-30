@@ -18,14 +18,16 @@ function calcSubTotal(id, cost) {
 
 function showCart(articles){
    let tbody = document.getElementsByTagName("tbody");
-   tbody[0].innerHTML = `
+   for(product of articles) {
+      tbody[0].innerHTML += `
       <tr>
-         <td><img class="cart-thumbnail" src="${articles[0].image}"> &nbsp&nbsp ${articles[0].name}</td>
-         <td>${articles[0].currency} ${articles[0].unitCost}</td>
-         <td><input id="cant-${articles[0].id}" oninput="calcSubTotal(${articles[0].id}, ${articles[0].unitCost})" style="width:75px; text-align:center" type="number" name="description" value=${articles[0].count}></td>
-         <td><strong>${articles[0].currency} <span id="subTotal-${articles[0].id}">${articles[0].unitCost}</span></strong></td>
+         <td><img class="cart-thumbnail" src="${product.image}"> &nbsp&nbsp ${product.name}</td>
+         <td>${product.currency} ${product.unitCost}</td>
+         <td><input id="cant-${product.id}" oninput="calcSubTotal(${product.id}, ${product.unitCost})" style="width:75px; text-align:center" type="number" name="description" value=${product.count}></td>
+         <td><strong>${product.currency} <span id="subTotal-${product.id}">${product.unitCost}</span></strong></td>
       </tr>
    `
+   } 
 }
 
 const getDefaultCart = async () => {
@@ -33,14 +35,31 @@ const getDefaultCart = async () => {
 
    if(response.ok) {
       const cartData = await response.json();
-      const {
+      let {
          articles
       } = cartData;
+      console.log(articles);
+
+      localStorage.setItem("cart25801","loaded");
+      
+      if(localStorage.getItem("articles") != null) {
+         articles = articles.concat(JSON.parse(localStorage.getItem("articles"))); 
+      }
+      else {
+         localStorage.setItem("articles",JSON.stringify(articles));
+         let array = JSON.parse(localStorage.getItem("articles")); 
+         console.log(array);
+      }
       showCart(articles);
    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
    cleanButtons();
-   getDefaultCart();
+   if (localStorage.getItem("cart25801") == null) {
+      getDefaultCart();
+   }
+   else {
+      showCart(JSON.parse(localStorage.getItem("articles")));
+   }
 })

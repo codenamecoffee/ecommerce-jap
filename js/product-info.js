@@ -169,14 +169,42 @@ function showProductImages(productImages) {
    container[0].appendChild(ul2);
 }
 
-
+function addToCart(){
+   let newArticle = JSON.parse(localStorage.getItem("tempArticle"));
+   let articles = JSON.parse(localStorage.getItem("articles"));
+   if(articles != null) {
+      articles = articles.concat(newArticle); 
+      localStorage.setItem("articles",JSON.stringify(articles));
+   }
+   else {
+      localStorage.setItem("articles",JSON.stringify(newArticle));
+   }
+}
 
 function showProduct (product) {
+
+   const tempArticle = {
+      id: product.id,
+      name: product.name,
+      count: 1,      
+      unitCost: product.cost,
+      currency: product.currency,
+      image: product.images[0],
+   }
+
+   console.log(tempArticle);
+
+   localStorage.setItem("tempArticle",JSON.stringify(tempArticle));
+
    let ul = document.createElement("ul");
    ul.setAttribute("id","productData");
    ul.innerHTML = `
       <li>
-         <h2>${product.name}</h2>
+         <div class="d-flex">
+            <h2>${product.name}</h2>
+            <button id="buyButton" type="button" class="btn btn-outline-success" 
+            onclick="addToCart()">Comprar</button>
+         </div>
          <hr>
       </li>
       <li>
