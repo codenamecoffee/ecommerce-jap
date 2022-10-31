@@ -1,8 +1,8 @@
 let main = document.getElementsByTagName("main");
-console.log(main);
+// console.log(main);
 
 let container = main[0].getElementsByTagName("div");
-console.log(container);
+// console.log(container);
 
 // https://japceibal.github.io/emercado-api/products/
 
@@ -96,11 +96,11 @@ function showComments(comments){
 
 const getComments = async() => {
    const response = await fetch(`https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem("productID")}.json`);
-   console.log(response);
+   // console.log(response);
 
    if(response.ok) {
       const comments = await response.json();
-      console.log(comments);
+      // console.log(comments);
 
       showComments(comments);
    }
@@ -172,16 +172,17 @@ function showProductImages(productImages) {
 function addToCart(){
    let newArticles = [];
    newArticles.push(JSON.parse(localStorage.getItem("tempArticle")));
-   console.log(newArticles);
+   // console.log(newArticles);
    let articles = JSON.parse(localStorage.getItem("articles"));
    if(articles != null) {
-      console.log(articles);
+      // console.log(articles);
       articles = articles.concat(newArticles); 
       localStorage.setItem("articles",JSON.stringify(articles));
    }
    else {
       localStorage.setItem("articles",JSON.stringify(newArticles));
    }
+   //Añadir alerta: "producto agregado al carrito con éxito"
 }
 
 function showProduct (product) {
@@ -230,7 +231,7 @@ function showProduct (product) {
          <p><strong>Imágenes ilustrativas: </strong></p>
       </li>
    `
-   console.log(ul);
+   // console.log(ul);
    container[0].appendChild(ul);
 
    showProductImages(product.images);
@@ -255,7 +256,7 @@ function showProduct (product) {
 
 const getData = async() => {
    const response = await fetch(`https://japceibal.github.io/emercado-api/products/${localStorage.getItem("productID")}.json`);
-   console.log(response);
+   // console.log(response);
 
    if(response.ok) {
 

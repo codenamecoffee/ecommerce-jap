@@ -301,6 +301,7 @@ h5{
   display: flex;
   flex-direction: column;
   padding-left: 50px;
+  width: max-content;
 }
 
 #direccionDeEnvio{
@@ -367,8 +368,14 @@ h5{
 
 #radioError {
   color: red;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .red {
   background-color: red;
+}
+
+.payment-error {
+  padding-left: 50px;
 }

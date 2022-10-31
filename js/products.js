@@ -3,7 +3,7 @@
 Es dentro de ese elemento en donde quiero desplegar la categoría en cuestión*/
 
 let listado = document.getElementsByTagName('main');
-console.log(listado);
+// console.log(listado);
 
 /*ACTUALIZACIÓN: Opté por comentar la alerta en el .html, para que nunca se cargue y se muestre ni por un microsegundo en el navegador. */
 /*Borro la alerta que dice "Funcionalidad en desarrollo" */
@@ -17,7 +17,7 @@ console.log(listado);
 
 let divT = document.createElement("div");
 divT.classList.add("text-center", "p-4");
-console.log(divT);
+// console.log(divT);
 
  /* Meto divT en el main de productos.html*/
 listado[0].append(divT);
@@ -26,13 +26,13 @@ listado[0].append(divT);
 
 let divC = document.createElement("div"); 
 divC.classList.add("container");
-console.log(divC);
+// console.log(divC);
 
 /* divR: sigo agregando divisiones, respetando el estilo de categories.html*/
 
 let divR = document.createElement("div");
 divR.classList.add("row");
-console.log(divR);
+// console.log(divR);
 
 /* divF y divP: creo otra división, para los botones que filtran según precio u orden alfabético */
 
@@ -81,7 +81,7 @@ divP.innerHTML =  `<div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
 let divProdList = document.createElement("div");
 divProdList.classList.add("list-group");
 divProdList.setAttribute("id","prod-list-container")
-console.log(divProdList);
+// console.log(divProdList);
 
 /* Sigo respetando las anidaciones de divs del estilo que quiero imitar:
 div de clase "list-group" dentro de div de clase "row" */
@@ -92,7 +92,7 @@ divR.append(divProdList);
 divC.append(divR);
 
 listado[0].append(divC);
-console.log(listado[0]);
+// console.log(listado[0]);
 
 function setProductID(id){
    localStorage.setItem("productID",id);
@@ -141,7 +141,6 @@ async function getProductsList(){
 
       productsArray.push(...result.data.products);
       console.log(productsArray);
-      console.log(productsArray.length);
 
       if (productsArray.length > 0) {
          divT.innerHTML = `<h2 id="productos">Productos</h2> <p class="lead">Verás aquí todos los productos de la categoría <strong>${result.data.catName}</strong></p>`
@@ -162,8 +161,8 @@ getProductsList();
 
 let filteredProductList = productsArray;
 
-console.log(productsArray);
-console.log(filteredProductList);
+// console.log(productsArray);
+// console.log(filteredProductList);
 
 let sortAscButton = document.getElementById("sortAsc");
 let sortDescButton = document.getElementById("sortDesc");
@@ -175,8 +174,8 @@ let cleanButton = document.getElementById("clearRangeFilter");
 let minPrice = undefined; 
 let maxPrice = undefined; 
 
-console.log(minPrice);
-console.log(maxPrice);
+// console.log(minPrice);
+// console.log(maxPrice);
 
 sortAscButton.addEventListener("click", () => {
    filteredProductList.sort((a,b) => {
@@ -208,8 +207,8 @@ filterButton.addEventListener("click", () => {
     if (minPrice > 0 && maxPrice > 0) {
       filteredProductList = filteredProductList.filter((value) => value.cost >= minPrice && value.cost <= maxPrice)
 
-      console.log(productsArray);
-      console.log(filteredProductList);
+      // console.log(productsArray);
+      // console.log(filteredProductList);
 
       showProductList(filteredProductList);
     }
@@ -226,8 +225,8 @@ cleanButton.addEventListener("click", () => {
 
    filteredProductList = productsArray;
 
-   console.log(productsArray);
-   console.log(filteredProductList);
+   // console.log(productsArray);
+   // console.log(filteredProductList);
 
    showProductList(productsArray);
 })

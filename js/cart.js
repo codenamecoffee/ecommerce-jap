@@ -1,7 +1,7 @@
 // Variables y contenedores 
 
 // Ejemplo de JavaScript inicial para deshabilitar el envío de formularios si hay campos no válidos
-(function () {
+const formController = () => {
    'use strict'
  
    // Obtener todos los formularios a los que queremos aplicar estilos de validación de Bootstrap personalizados
@@ -16,16 +16,18 @@
            event.stopPropagation()
          }
 
-         if (document.getElementById("validation01").checked == false && 
-         document.getElementById("validation02").checked == false && 
-         document.getElementById("validation03").checked == false) {
-            document.getElementById("radioError").innerHTML = `&nbsp&nbsp*debe seleccionar al menos una opción.*`
+         if (!document.getElementById("validation01").checked && 
+         !document.getElementById("validation02").checked && 
+         !document.getElementById("validation03").checked) {
+            document.getElementById("radioError").innerHTML = `
+            &nbsp&nbsp*debe seleccionar al menos&nbsp<u>una opción</u>.*
+            `
          }
  
          form.classList.add('was-validated')
        }, false)
      })
- })()
+ }
 
 function cleanButtons () {
    document.getElementsByName("premium")[0].checked = false;
@@ -34,6 +36,7 @@ function cleanButtons () {
    document.getElementById("calle").getElementsByTagName("input")[0].value = "";
    document.getElementById("numero").getElementsByTagName("input")[0].value = "";
    document.getElementById("esquina").getElementsByTagName("input")[0].value = "";
+   localStorage.setItem("iva",0);
 }
 
 function calcAllCosts() {
@@ -43,8 +46,8 @@ function calcAllCosts() {
    articles = JSON.parse(localStorage.getItem("articles"));
    let subTotal = 0;
 
-   console.log(articles);
-   console.log(articles!=null);
+   // console.log(articles);
+   // console.log(articles!=null);
 
    if(articles != null) {
       for(article of articles) {
@@ -75,11 +78,14 @@ function findIndex (array, id) {
 
 function calcUnitSubTotal(id, cost) {
    let tempCant = document.getElementById(`cant-${id}`).value;
+
    let array = JSON.parse(localStorage.getItem("articles"));
    array[findIndex(array,id)].count = tempCant;
    localStorage.setItem("articles",JSON.stringify(array));
+
    let tempSpan = document.getElementById(`subTotal-${id}`);
    tempSpan.innerHTML = `${cost*tempCant}`;
+
    calcAllCosts();
 }
 
@@ -116,8 +122,6 @@ const getDefaultCart = async () => {
       }
       else {
          localStorage.setItem("articles", JSON.stringify(articles));
-         let array = JSON.parse(localStorage.getItem("articles")); 
-         console.log(array);
       }
       showCart(articles);
    }
@@ -126,6 +130,8 @@ const getDefaultCart = async () => {
 
 document.addEventListener("DOMContentLoaded", () => {
    cleanButtons();
+   formController();
+
    if (localStorage.getItem("cart25801") == null) {
       getDefaultCart();
    }
