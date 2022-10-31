@@ -339,3 +339,36 @@ h5{
 #buyButton {
   margin-inline: 20px;
 }
+
+#costos {
+  padding-inline: 50px;
+}
+
+#finalizarCompra{
+  margin-top: 70px;
+  width: 80%;
+}
+
+.form-label {
+  padding-left: 50px;
+}
+
+#payment{
+  padding-bottom: 10px;
+}
+
+#terms {
+  margin-left: 15px;
+}
+
+#total{
+  font-weight:550;
+}
+
+#radioError {
+  color: red;
+}
+
+.red {
+  background-color: red;
+}

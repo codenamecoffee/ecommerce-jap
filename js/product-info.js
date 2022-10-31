@@ -170,14 +170,17 @@ function showProductImages(productImages) {
 }
 
 function addToCart(){
-   let newArticle = JSON.parse(localStorage.getItem("tempArticle"));
+   let newArticles = [];
+   newArticles.push(JSON.parse(localStorage.getItem("tempArticle")));
+   console.log(newArticles);
    let articles = JSON.parse(localStorage.getItem("articles"));
    if(articles != null) {
-      articles = articles.concat(newArticle); 
+      console.log(articles);
+      articles = articles.concat(newArticles); 
       localStorage.setItem("articles",JSON.stringify(articles));
    }
    else {
-      localStorage.setItem("articles",JSON.stringify(newArticle));
+      localStorage.setItem("articles",JSON.stringify(newArticles));
    }
 }
 
