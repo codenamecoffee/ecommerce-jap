@@ -1,4 +1,14 @@
 // Variables y contenedores 
+const inputBtn = document.getElementById("inputBtn");
+const validation01 = document.getElementById("validation01");
+const validation02 = document.getElementById("validation02");
+const validation03 = document.getElementById("validation03");
+const validation04 = document.getElementById("validation04");
+const validation05 = document.getElementById("validation05");
+let cardNumber_input = document.getElementsByName("cardNumber")[0];
+let expirationDate_input = document.getElementsByName("expirationDate")[0];
+let securityCode_input = document.getElementsByName("securityCode")[0];
+let accountNumber_input = document.getElementsByName("accountNumber")[0];
 
 // Ejemplo de JavaScript inicial para deshabilitar el envío de formularios si hay campos no válidos
 const formController = () => {
@@ -15,13 +25,19 @@ const formController = () => {
            event.preventDefault()
            event.stopPropagation()
          }
-
-         if (!document.getElementById("validation01").checked && 
-         !document.getElementById("validation02").checked && 
-         !document.getElementById("validation03").checked) {
+          
+         if (!validation01.checked && 
+            !validation02.checked && 
+            !validation03.checked) {
+               
             document.getElementById("radioError").innerHTML = `
-            &nbsp&nbsp*debe seleccionar al menos&nbsp<u>una opción</u>.*
+               &nbsp&nbsp*debe seleccionar al menos&nbsp<u>una opción</u>.*
             `
+         }
+
+         if (form.checkValidity()) {
+            // document.getElementsByClassName("alert-success")[0].removeAttribute("hidden");
+            alert("gracias");
          }
  
          form.classList.add('was-validated')
@@ -30,13 +46,29 @@ const formController = () => {
  }
 
 function cleanButtons () {
-   document.getElementsByName("premium")[0].checked = false;
-   document.getElementsByName("express")[0].checked = false;
-   document.getElementsByName("standard")[0].checked = false;
+   validation01.checked = false;
+   validation02.checked = false;
+   validation03.checked = false;
+
+   localStorage.setItem("iva",0);
+
    document.getElementById("calle").getElementsByTagName("input")[0].value = "";
    document.getElementById("numero").getElementsByTagName("input")[0].value = "";
    document.getElementById("esquina").getElementsByTagName("input")[0].value = "";
-   localStorage.setItem("iva",0);
+   
+   inputBtn.checked = false;
+
+   validation04.checked = false;
+   validation05.checked = false;
+
+   cardNumber_input.value ="";
+   cardNumber_input.setAttribute("disabled", true);
+   expirationDate_input.value ="";
+   expirationDate_input.setAttribute("disabled", true);
+   securityCode_input.value ="";
+   securityCode_input.setAttribute("disabled", true);
+   accountNumber_input.value ="";
+   accountNumber_input.setAttribute("disabled", true);
 }
 
 function calcAllCosts() {
@@ -139,29 +171,119 @@ document.addEventListener("DOMContentLoaded", () => {
       showCart(JSON.parse(localStorage.getItem("articles")));
    }
 
-   document.getElementById("validation01").addEventListener("click", () => {
-      document.getElementById("validation02").checked = false;
-      document.getElementById("validation03").checked = false;
+   // document.getElementsByClassName("btn-success")[0].addEventListener("click", () => {
+   //    document.getElementsByClassName("alert-success")[0].setAttribute("hidden", true);
+   // })
+
+   validation01.addEventListener("click", () => {
+      validation01.setAttribute("required", true);
+
+      validation02.checked = false;
+      validation02.removeAttribute("required");
+      validation03.checked = false;
+      validation03.removeAttribute("required");
+
       document.getElementById("radioError").innerHTML = ``;
-      localStorage.setItem("iva", document.getElementById("validation01").value);
+      localStorage.setItem("iva", validation01.value);
       calcAllCosts()
    })
    
-   document.getElementById("validation02").addEventListener("click", () => {
-      document.getElementById("validation01").checked = false;
-      document.getElementById("validation03").checked = false;
+   validation02.addEventListener("click", () => {
+      validation02.setAttribute("required", true);
+
+      validation01.checked = false;
+      validation01.removeAttribute("required");
+      validation03.checked = false;
+      validation03.removeAttribute("required");
+
       document.getElementById("radioError").innerHTML = ``;
-      localStorage.setItem("iva", document.getElementById("validation02").value);
+      localStorage.setItem("iva", validation02.value);
       calcAllCosts()
    })
    
-   document.getElementById("validation03").addEventListener("click", () => {
-      document.getElementById("validation01").checked = false;
-      document.getElementById("validation02").checked = false;
+   validation03.addEventListener("click", () => {
+      validation03.setAttribute("required", true);
+
+      validation01.checked = false;
+      validation01.removeAttribute("required");
+      validation02.checked = false;
+      validation02.removeAttribute("required");
+
       document.getElementById("radioError").innerHTML = ``;
-      localStorage.setItem("iva", document.getElementById("validation03").value);
+      localStorage.setItem("iva", validation03.value);
       calcAllCosts()
    })
+
+   validation04.addEventListener("click", () => {
+
+      validation04.setAttribute("required", true);
+
+      validation05.checked = false;
+      validation05.removeAttribute("required");
+      
+      cardNumber_input.removeAttribute("disabled");
+      expirationDate_input.removeAttribute("disabled");
+      securityCode_input.removeAttribute("disabled");
+
+      accountNumber_input.setAttribute("disabled", true);
+   })
+
+   validation05.addEventListener("click", () => {
+
+      validation05.setAttribute("required", true);
+
+      validation04.checked = false;
+      validation04.removeAttribute("required");
+
+      accountNumber_input.removeAttribute("disabled");
+
+      cardNumber_input.setAttribute("disabled", true);
+      expirationDate_input.setAttribute("disabled", true);
+      securityCode_input.setAttribute("disabled", true);
+   })
+
+   cardNumber_input.addEventListener("input", () => {
+      if (cardNumber_input.value &&
+         expirationDate_input.value &&
+         securityCode_input.value) {
+            inputBtn.checked = true;
+      }
+      else {
+         inputBtn.checked = false;
+      }
+   })
+
+   expirationDate_input.addEventListener("input", () => {
+      if (cardNumber_input.value &&
+         expirationDate_input.value &&
+         securityCode_input.value) {
+            inputBtn.checked = true;
+      }
+      else {
+         inputBtn.checked = false;
+      }
+   })
+
+   securityCode_input.addEventListener("input", () => {
+      if (cardNumber_input.value &&
+         expirationDate_input.value &&
+         securityCode_input.value) {
+            inputBtn.checked = true;
+      }
+      else {
+         inputBtn.checked = false;
+      }
+   })
+
+   accountNumber_input.addEventListener("input", () => {
+      if (accountNumber_input.value) {
+         inputBtn.checked = true;
+      }
+      else {
+         inputBtn.checked = false;
+      }
+   })
+
    calcAllCosts();
 })
 

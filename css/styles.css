@@ -315,7 +315,13 @@ h5{
   flex-wrap: wrap;
 }
 
-#calle, #esquina{
+#cardData {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#calle, #esquina {
   display: flex;
   flex-direction: column;
   padding-left: 50px;
@@ -323,6 +329,30 @@ h5{
   padding-bottom: 20px;
 
 } 
+
+#cardNumExp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+} 
+
+#tarjetSecure {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+}
+
+#moneyTransfer {
+  padding-top: 50px;
+}
+
+#numAccount {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding-left: 20px;
+}
 
 #numero{
   display: flex;
@@ -378,4 +408,14 @@ h5{
 
 .payment-error {
   padding-left: 50px;
+}
+
+.specialAlert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.specialAlert button {
+  margin-top: 15px;
 }
