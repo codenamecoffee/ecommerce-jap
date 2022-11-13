@@ -6,6 +6,10 @@ let container = main[0].getElementsByTagName("div");
 
 // https://japceibal.github.io/emercado-api/products/
 
+document.getElementsByClassName("btn-success")[0].addEventListener("click", () => {
+   document.getElementsByClassName("alert-success")[0].setAttribute("hidden", true);   
+});
+
 
 function stars (rate) {
    let result = ``;
@@ -183,6 +187,7 @@ function addToCart(){
       localStorage.setItem("articles",JSON.stringify(newArticles));
    }
    //Añadir alerta: "producto agregado al carrito con éxito"
+   document.getElementsByClassName("alert-success")[0].removeAttribute("hidden");
 }
 
 function showProduct (product) {

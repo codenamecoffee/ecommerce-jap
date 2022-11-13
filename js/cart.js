@@ -9,6 +9,7 @@ let cardNumber_input = document.getElementsByName("cardNumber")[0];
 let expirationDate_input = document.getElementsByName("expirationDate")[0];
 let securityCode_input = document.getElementsByName("securityCode")[0];
 let accountNumber_input = document.getElementsByName("accountNumber")[0];
+const sucessPurchase_button = document.getElementById("finalizarCompra");
 
 // Ejemplo de JavaScript inicial para deshabilitar el envío de formularios si hay campos no válidos
 const formController = () => {
@@ -37,7 +38,7 @@ const formController = () => {
 
          if (form.checkValidity()) {
             // document.getElementsByClassName("alert-success")[0].removeAttribute("hidden");
-            alert("gracias");
+            alert("Compra realizada exitosamente");
          }
  
          form.classList.add('was-validated')
@@ -283,6 +284,14 @@ document.addEventListener("DOMContentLoaded", () => {
          inputBtn.checked = false;
       }
    })
+
+   // sucessPurchase_button.addEventListener("submit", () => {
+   //    document.getElementsByClassName("alert-success")[0].removeAttribute("hidden");
+   // })   
+
+   // document.getElementsByClassName("btn-success")[0].addEventListener("click", () => {
+   //    document.getElementsByClassName("alert-success")[0].setAttribute("hidden", true);   
+   // });
 
    calcAllCosts();
 })
