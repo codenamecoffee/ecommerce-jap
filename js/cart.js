@@ -51,7 +51,7 @@ function cleanButtons () {
    validation02.checked = false;
    validation03.checked = false;
 
-   localStorage.setItem("iva",0);
+   localStorage.setItem("tax",0);
 
    document.getElementById("calle").getElementsByTagName("input")[0].value = "";
    document.getElementById("numero").getElementsByTagName("input")[0].value = "";
@@ -85,7 +85,7 @@ function calcAllCosts() {
    if(articles != null) {
       for(article of articles) {
          if (article.currency == "UYU") {
-            subTotal += Math.round((article.unitCost/43)*article.count);
+            subTotal += Math.round((article.unitCost/42)*article.count);
          }
          else {
             subTotal += article.unitCost*article.count;
@@ -94,10 +94,10 @@ function calcAllCosts() {
       }
    }
 
-   let iva = localStorage.getItem("iva");
+   let tax = localStorage.getItem("tax");
    spanSubTotal.innerHTML = `${subTotal}`;
-   spanEnvio.innerHTML = `${Math.round(subTotal*iva)}`;
-   spanTotal.innerHTML = `${subTotal + Math.round(subTotal*iva)}`;
+   spanEnvio.innerHTML = `${Math.round(subTotal*tax)}`;
+   spanTotal.innerHTML = `${subTotal + Math.round(subTotal*tax)}`;
 }
 
 
@@ -185,8 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
       validation03.removeAttribute("required");
 
       document.getElementById("radioError").innerHTML = ``;
-      localStorage.setItem("iva", validation01.value);
-      calcAllCosts()
+      localStorage.setItem("tax", validation01.value);
+      calcAllCosts();
    })
    
    validation02.addEventListener("click", () => {
@@ -198,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
       validation03.removeAttribute("required");
 
       document.getElementById("radioError").innerHTML = ``;
-      localStorage.setItem("iva", validation02.value);
-      calcAllCosts()
+      localStorage.setItem("tax", validation02.value);
+      calcAllCosts();
    })
    
    validation03.addEventListener("click", () => {
@@ -211,8 +211,8 @@ document.addEventListener("DOMContentLoaded", () => {
       validation02.removeAttribute("required");
 
       document.getElementById("radioError").innerHTML = ``;
-      localStorage.setItem("iva", validation03.value);
-      calcAllCosts()
+      localStorage.setItem("tax", validation03.value);
+      calcAllCosts();
    })
 
    validation04.addEventListener("click", () => {
