@@ -19,6 +19,10 @@ function saveData () {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+   if(!localStorage.getItem("userMail")) {
+      window.location.href = "index.html";
+   } 
+
    firstName[0].value = localStorage.getItem("userFirstName");
    secondName[0].value = localStorage.getItem("userSecondName");   
    lastName[0].value = localStorage.getItem("userLastName");
