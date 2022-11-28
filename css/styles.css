@@ -116,6 +116,10 @@ footer p {
   cursor: pointer;
 }
 
+#rebelButton {
+  cursor: pointer;
+}
+
 .left {
   float: left;
   padding: 4px;
@@ -304,7 +308,7 @@ h5{
   width: max-content;
 }
 
-#direccionDeEnvio{
+#direccionDeEnvio, #profileData {
   display: flex;
   flex-direction: column;
 }
@@ -315,13 +319,21 @@ h5{
   flex-wrap: wrap;
 }
 
+#profileNames, #profileLastNames, #contactInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 #cardData {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-#calle, #esquina {
+#calle, #esquina, #firstName, #secondName, #firstLastName, 
+#secondLastName, #profileMail, #profileTel {
   display: flex;
   flex-direction: column;
   padding-left: 50px;
@@ -418,4 +430,14 @@ h5{
 
 .specialAlert button {
   margin-top: 15px;
+}
+
+#saveProfileData {
+  margin-top: 50px;
+  margin-inline: 40%;
+}
+
+.seccion2 {
+  display: flex;
+  margin-inline: 50px;
 }

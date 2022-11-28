@@ -52,10 +52,82 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
+      <!-- <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      </div> -->
+      <div class="text-center p-4">
+        <h2>Perfil</h2>
       </div>
+      
+      <hr class="seccion2">
+
+      <br>
+
+      <br>
+
+      <form onsubmit="saveData()">
+      
+      <div id="profileData">
+        
+        <div id="profileNames">
+  
+          <div id="firstName">
+            <label for="firstName">Primer nombre*</label>
+            <input type="text" class="form-control" name="firstName" required>
+            <!-- <div class="invalid-feedback">
+              Debe ingresar un nombre.
+            </div> -->
+          </div>
+  
+          <div id="secondName">
+            <label for="secondName">Segundo nombre</label>
+            <input type="text" class="form-control" name="secondName">
+          </div>
+  
+        </div>
+  
+        <div id="profileLastNames">
+  
+          <div id="firstLastName">
+            <label for="firstLastName">Primer apellido*</label>
+            <input type="text" class="form-control" name="firstLastName" required>
+            <!-- <div class="invalid-feedback">
+              Debe ingresar un nombre.
+            </div> -->
+          </div>
+  
+          <div id="secondLastName">
+            <label for="secondLastName">Segundo apellido</label>
+            <input type="text" class="form-control" name="secondLastName">
+          </div>
+  
+        </div>
+
+        <div id="contactInfo">
+
+          <div id="profileMail">
+            <label for="profileMail">E-mail*</label>
+            <input type="text" class="form-control" name="profileMail" required>
+            <!-- <div class="invalid-feedback">
+              Debe ingresar un nombre.
+            </div> -->
+          </div>
+  
+          <div id="profileTel">
+            <label for="profileTel">Teléfono de contacto</label>
+            <input type="text" class="form-control" name="profileTel">
+          </div>
+
+        </div>
+  
+        <button id="saveProfileData" class="btn btn-primary" type="submit">Guardar datos</button>    
+
+      </div>
+    
+      </form>
+
     </div>
+    
   </main>
   <footer class="text-muted">
     <div class="container">

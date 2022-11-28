@@ -44,7 +44,16 @@ function clearUser(){
   localStorage.clear(); 
 }
 
-let usuario = localStorage.getItem("user");
+function checkUser(){
+  if(localStorage.getItem("userMail")) {
+    window.location.href = "my-profile.html";
+  }
+  else {
+    window.location.href = "index.html";
+  }
+}
+
+let usuario = localStorage.getItem("userMail");
 console.log(usuario);
 let liUser = document.getElementById("userLogged");
 liUser.innerHTML = `
@@ -54,8 +63,10 @@ liUser.innerHTML = `
     </button>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="../cart.html">Mi carrito</a></li>
-      <li><a class="dropdown-item" href="../my-profile.html">Mi perfil</a></li>
+      <li id="rebelButton" onclick="checkUser()"><a class="dropdown-item">Mi perfil</a></li>
       <li onclick="clearUser()"><a class="dropdown-item" href="../index.html">Cerrar sesión</a></li>
     </ul>
   </div>
     `;
+
+    // href="../my-profile.html"

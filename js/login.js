@@ -59,7 +59,7 @@ p2.innerHTML = `Ingrese su contraseña`;
 function checkEmpty () {
    
    if(nombre.value && pass.value) {
-      localStorage.setItem("user",nombre.value);
+      localStorage.setItem("userMail",nombre.value);
       window.location.href = "ecommerce.html";
    }
    else if (nombre.value && !pass.value){
